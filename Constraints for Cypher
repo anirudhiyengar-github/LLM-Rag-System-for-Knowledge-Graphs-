@@ -1,0 +1,13 @@
+// 1. Unique Constraint for Student IDs
+CREATE CONSTRAINT student_id_unique IF NOT EXISTS
+FOR (s:Student) REQUIRE s.studentId IS UNIQUE;
+
+// 2. Indexing for Search Optimization
+CREATE INDEX student_major_idx IF NOT EXISTS
+FOR (s:Student) ON (s.major);
+
+CREATE INDEX student_seniority_idx IF NOT EXISTS
+FOR (s:Student) ON (s.seniority);
+
+// 3. Verification Query
+MATCH (s:Student) RETURN count(s) as TotalStudents;
